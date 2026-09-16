@@ -1,0 +1,22 @@
+{
+  "name": "programacion-web---evaluacion-1",
+  "version": "1.0.0",
+  "description": "Evaluacion sobre desarrollo de aplicaciones web con Express y Node",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegochavez985/Programacion-Web---Evaluacion-1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/diegochavez985/Programacion-Web---Evaluacion-1/issues"
+  },
+  "homepage": "https://github.com/diegochavez985/Programacion-Web---Evaluacion-1#readme"
+}
