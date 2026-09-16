@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/diegochavez985/Programacion-Web---Evaluacion-1/issues"
   },
-  "homepage": "https://github.com/diegochavez985/Programacion-Web---Evaluacion-1#readme"
+  "homepage": "https://github.com/diegochavez985/Programacion-Web---Evaluacion-1#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
