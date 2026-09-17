@@ -83,6 +83,19 @@ const cambiarEstadoIncidencia = (req, res) => {
             res.status(404).json({ mensaje: "Incidencia no encontrada" });
         }
     };
+
+    //Funcion de Eliminar Incidencias
+    const eliminarIncidencia = (req, res) => {
+        const idBuscado = parseInt(req.params.id);
+        const indice = incidencias.findIndex(incidencia => incidencia.id === idBuscado);
+        if (indice !== -1) {
+            incidencias.splice(indice, 1);
+            res.json({ mensaje: "Incidencia eliminada correctamente" });
+        } else {
+            res.status(404).json({ mensaje: "Incidencia no encontrada" });
+        }
+    }
+
 module.exports = { 
     cambiarEstadoIncidencia,
     buscarIncidencia
@@ -91,5 +104,6 @@ module.exports = {
     listarIncidencias,
     crearIncidencia,
     cambiarEstadoIncidencia,
-    buscarIncidencia
+    buscarIncidencia,
+    eliminarIncidencia
 };
