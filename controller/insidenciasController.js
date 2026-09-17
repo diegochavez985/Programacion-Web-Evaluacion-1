@@ -70,13 +70,26 @@ const cambiarEstadoIncidencia = (req, res) => {
     }
 
     res.json({ mensaje: "Estado actualizado correctamente", incidencia });
+
 };
+
+    //Funcion Buscar por incidencia por ID
+    const buscarIncidencia = (id) => {
+        const idBuscado = parseInt(req.params.di);
+        const incidenciaEncontrada = incidencias.find(incidencia => incidencia.id === idBuscado);
+        if (incidenciaEncontrada) {
+            res.json(incidenciaEncontrada);
+        }else{
+            res.status(404).json({ mensaje: "Incidencia no encontrada" });
+        }
+    };
 module.exports = { 
     cambiarEstadoIncidencia,
-
+    buscarIncidencia
 };
 module.exports = {
     listarIncidencias,
     crearIncidencia,
-    cambiarEstadoIncidencia
+    cambiarEstadoIncidencia,
+    buscarIncidencia
 };
