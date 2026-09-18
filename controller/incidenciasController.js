@@ -1,20 +1,18 @@
    
-   const { esTextoValido, esPrioridadValida, esEstadoValido } = require('../utils/helpers');
+const { validadarEstado, validadarPrioridad, validadarTexto } = require('../utils/helpers');
 
 // Arreglo para almacenar las incidencias
 let incidencias = [];
 let idContador = 1;
 
-// Listar todas las incidencias
 const listarIncidencias = (req, res) => {
     res.json(incidencias);
 };
 
-// Genera una nueva incidencia
 const crearIncidencia = (req, res) => {
     const { empleado, area, descripcion, prioridad } = req.body;
 
-    if (!esTextoValido(empleado) || !esTextoValido(area) || !esTextoValido(descripcion) || !esPrioridadValida(prioridad)) {
+    if (!validadarTexto(empleado) || !validadarTexto(area) || !validadarTexto(descripcion) || !validadarPrioridad(prioridad)) {
         return res.status(400).json({ 
             error: "Todos los campos son obligatorios, no se permiten cadenas vacías y la prioridad debe ser Alta, Media o Baja." 
         });
@@ -26,7 +24,7 @@ const crearIncidencia = (req, res) => {
         area: area.trim(),
         descripcion: descripcion.trim(),
         prioridad: prioridad.trim().toLowerCase(),
-        estado: "Pendiente" // Estado por defecto
+        estado: "Pendiente"
     };
 
     incidencias.push(nuevaIncidencia);
@@ -36,14 +34,12 @@ const crearIncidencia = (req, res) => {
         incidencia: nuevaIncidencia
     });
 };
-   const { Prioridades, Estados } = require('../utils/helpers');
-
-const cambiarEstadoIncidencia = (req, res) => {
+    const cambiarEstadoIncidencia = (req, res) => {
     const id = parseInt(req.params.id);
     const { estado } = req.body;
 
-    if (!esEstadoValido(estado)) {
-        return res.status(400).json({ error: "Estado no válido." });
+    if (!validadarEstado(estado)) {
+        return res.status(400).json({ error: "Estado no válido. Use: Pendiente, En Proceso, Resuelta o Cancelada." });
     }
 
     const incidencia = incidencias.find(inc => inc.id === id);
@@ -53,27 +49,26 @@ const cambiarEstadoIncidencia = (req, res) => {
 
     const estadoLimpio = estado.trim().toLowerCase();
     switch (estadoLimpio) {
-        case Estados.PENDIENTE:
+        case "pendiente":
             incidencia.estado = "Pendiente";
             break;
-        case Estados.EN_PROCESO:
+        case "en proceso":
             incidencia.estado = "En Proceso";
             break;
-        case Estados.RESUELTA:
+        case "resuelta":
             incidencia.estado = "Resuelta";
             break;
-        case Estados.CANCELADA:
+        case "cancelada":
             incidencia.estado = "Cancelada";
             break;
         default:
-            return res.status(400).json({ error: "Estado no reconocido." });
+            return res.status(400).json({ error: "Estado no reconocido en el sistema." });
     }
 
-    res.json({ mensaje: "Estado actualizado correctamente", incidencia });
-};
-module.exports = { 
-    cambiarEstadoIncidencia,
-
+    res.json({
+        mensaje: "Estado de la incidencia actualizado correctamente",
+        incidencia
+    });
 };
 module.exports = {
     listarIncidencias,
