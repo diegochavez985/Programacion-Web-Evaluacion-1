@@ -5,12 +5,12 @@ const PORT = 3000;
 // Middleware obligatorio para interpretar JSON
 app.use(express.json());
 
-// Importar rutas
 const incidenciasRutas = require('../routes/incidencias');
+
 app.use('/incidencias', incidenciasRutas);
 
 app.get('/', (req, res) => {
-    res.json({ mensaje: "API REST de Soporte Técnico - TechSupport S.A." });
+    res.json({ mensaje: "Bienvenido a la API de Incidencias" });
 });
 
 app.listen(PORT, () => {
