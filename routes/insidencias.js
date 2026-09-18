@@ -9,7 +9,7 @@ const {
   eliminarIncidencia,
   obtenerEstadisticas,
   clasificarIncidencia
-} = require('../controllers/incidenciasController');
+} = require('../controller/insidenciasController');
 
 // >>> EJERCICIO 7: ruta de estadisticas
 router.get('/estadisticas', obtenerEstadisticas);
