@@ -6,7 +6,7 @@ const {
     listarIncidencias,
     buscarIncidencia,
     eliminarIncidencia
-} = require('../controllers/incidenciasController');
+} = require('../controller/incidenciasController');
 
 // Rutas de la API
 router.get('/', listarIncidencias);

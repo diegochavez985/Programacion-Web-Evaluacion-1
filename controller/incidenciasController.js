@@ -70,8 +70,8 @@ const crearIncidencia = (req, res) => {
 };
 
     //Funcion Buscar por incidencia por ID
-    const buscarIncidencia = (id) => {
-        const idBuscado = parseInt(req.params.di);
+    const buscarIncidencia = (req, res) => {
+        const idBuscado = parseInt(req.params.id);
         const incidenciaEncontrada = incidencias.find(incidencia => incidencia.id === idBuscado);
         if (incidenciaEncontrada) {
             res.json(incidenciaEncontrada);
