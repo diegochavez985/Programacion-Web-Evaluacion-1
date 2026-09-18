@@ -1,18 +1,18 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-// Middleware obligatorio para interpretar JSON
+//Obligatorio interpretar JSON
 app.use(express.json());
 
-// Importar rutas
 const incidenciasRutas = require('../routes/incidencias');
+
 app.use('/incidencias', incidenciasRutas);
 
 app.get('/', (req, res) => {
-    res.json({ mensaje: "API REST de Soporte Técnico - TechSupport S.A." });
+    res.json("Bienvenido a la API de Incidencias" );
 });
-
+// Iniciar servidor
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`Servidor corriendo exitosamente en http://localhost:${PORT}`);
 });
