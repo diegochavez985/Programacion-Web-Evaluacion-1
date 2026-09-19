@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 const {
-  listarIncidencias,
-  obtenerIncidencia,
   crearIncidencia,
-  actualizarIncidencia,
+  cambiarEstadoIncidencia,
+  listarIncidencias,
+  buscarIncidencia,
   eliminarIncidencia,
   obtenerEstadisticas,
   clasificarIncidencia
@@ -14,15 +14,14 @@ const {
 // >>> EJERCICIO 7: ruta de estadisticas
 router.get('/estadisticas', obtenerEstadisticas);
 
-// CRUD
-router.get('/incidencias', listarIncidencias);
-router.post('/incidencias', crearIncidencia);
-
 // >>> EJERCICIO 8: ruta de clasificacion automatica
-router.get('/incidencias/:id/clasificacion', clasificarIncidencia);
+router.get('/:id/clasificacion', clasificarIncidencia);
 
-router.get('/incidencias/:id', obtenerIncidencia);
-router.put('/incidencias/:id', actualizarIncidencia);
-router.delete('/incidencias/:id', eliminarIncidencia);
+// Rutas de la API
+router.get('/', listarIncidencias);
+router.post('/', crearIncidencia);
+router.put('/:id/estado', cambiarEstadoIncidencia);
+router.get('/:id', buscarIncidencia);
+router.delete('/:id', eliminarIncidencia);
 
 module.exports = router;

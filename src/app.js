@@ -1,20 +1,18 @@
 const express = require('express');
-const incidenciasRoutes = require('./routes/insidencias');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
+//Obligatorio interpretar JSON
 app.use(express.json());
 
+const incidenciasRutas = require('../routes/incidencias');
+
+app.use('/incidencias', incidenciasRutas);
+
 app.get('/', (req, res) => {
-  res.json({ mensaje: 'API de Incidencias - TechSupport S.A.', version: '1.0.0' });
+    res.json("Bienvenido a la API de Incidencias" );
 });
-
-app.use('/', incidenciasRoutes);
-
-app.use((req, res) => {
-  res.status(404).json({ error: 'Ruta no encontrada' });
-});
-
+// Iniciar servidor
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`Servidor corriendo exitosamente en http://localhost:${PORT}`);
 });
